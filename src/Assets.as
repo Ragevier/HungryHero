@@ -1,5 +1,10 @@
 package
 {
+	import flash.utils.Dictionary;
+	
+	import starling.textures.Texture;
+	import flash.display.Bitmap;
+
 	public class Assets
 	{
 		[Embed(source="../media/graphics/bgWelcome.jpg")]
@@ -15,22 +20,22 @@ package
 		[Embed(source="../media/graphics/welcome_playButton.png")]
 		public static const WelcomePlayBtn:Class;
 	
-		[Embed(source="../media/graphics/welcome_aboutButtom.png")]
+		[Embed(source="../media/graphics/welcome_aboutButton.png")]
 		public static const WelcomeAboutBtn:Class;
 	
 	
-		private static var gameTexture:Dictionary = new Dictionary 
+		private static var gameTextures:Dictionary = new Dictionary();
 		
 		public static function getTexture(name:String):Texture
 		
 		{
 			
-			if(gameTexture[name] == undefined){
-				
+			if(gameTextures[name] == undefined)
+			{
 			var bitmap:Bitmap = new Assets[name]();
 			gameTextures[name] = Texture.fromBitmap(bitmap);
 			}
-			return gameTextures[name]:
+			return gameTextures[name];
 		}
 	
 	}
