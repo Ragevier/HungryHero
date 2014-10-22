@@ -1,9 +1,10 @@
 package
 {
+	import flash.display.Bitmap;
 	import flash.utils.Dictionary;
 	
 	import starling.textures.Texture;
-	import flash.display.Bitmap;
+	import starling.textures.TextureAtlas;
 
 	public class Assets
 	{
@@ -23,10 +24,33 @@ package
 		[Embed(source="../media/graphics/welcome_aboutButton.png")]
 		public static const WelcomeAboutBtn:Class;
 	
-	
 		private static var gameTextures:Dictionary = new Dictionary();
+		private static var gameTextureAtlas:TextureAtlas;
+		
+		[Embed(source="../media/graphics/mySpritesheet.png")]
+		public static const atlasTextureGame:Class;
+		
+		[Embed(source="../media/graphics/mySpritesheet.xml", mimeType="application/octet-stream")]
+		public static const AtlasXmlGame:Class;
+			
+		
+		public static function getAtlas():TextureAtlas
+		{
+		if  (gameTextureAtlas == null)
+		{
+			var texture:Texture = getTexture("AtlasTextureGame");
+			var xml:XML = XML(new AtlasXmlGame());
+			gameTextureAtlas = new TextureAtlas(texture, xml);
+		}
+		return gameTextureAtlas;
+		}
+		
 		
 		public static function getTexture(name:String):Texture
+		
+		
+		
+		
 		
 		{
 			
