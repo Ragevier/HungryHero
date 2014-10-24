@@ -10,19 +10,6 @@ package
 	{
 		[Embed(source="../media/graphics/bgWelcome.jpg")]
 		public static const BgWelcome:Class;
-		
-		[Embed(source="../media/graphics/welcome_hero.png")]
-		public static const WelcomeHero:Class;
-	
-		[Embed(source="../media/graphics/welcome_title.png")]
-		public static const WelcomeTitle:Class;
-	
-	
-		[Embed(source="../media/graphics/welcome_playButton.png")]
-		public static const WelcomePlayBtn:Class;
-	
-		[Embed(source="../media/graphics/welcome_aboutButton.png")]
-		public static const WelcomeAboutBtn:Class;
 	
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameTextureAtlas:TextureAtlas;
