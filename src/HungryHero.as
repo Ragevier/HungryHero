@@ -4,6 +4,8 @@ package
 	
 	import net.hires.debug.Stats;
 	
+	import screens.inGame;
+	
 	import starling.core.Starling;
 	
 	[SWF(FrameRate="60", width="800", height="600", backgroundColor="0x333333")]
@@ -18,7 +20,7 @@ package
 			stats = new Stats ();
 			this.addChild(stats);
 			
-			myStarling= new Starling(Game,stage)
+			myStarling= new Starling(screens.inGame,stage)
 			myStarling.antiAliasing = 1;
 			myStarling.start();
 		}

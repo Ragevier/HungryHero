@@ -1,17 +1,20 @@
 package objects
 {
-	import starling.core.Starling
-	import flash.events.Event;
+	
+	
+	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	
-	public class heroArt extends Sprite
+	public class Hero extends Sprite
 	{
-		private var Heroart:MovieClip;
+		private var heroArt:MovieClip;
 		public function Hero()
 		{
 			super();
-		this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
+			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
+		
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -27,10 +30,8 @@ package objects
 		heroArt = new MovieClip(Assets.getAtlas().getTextures("fly_"), 20);
 		
 		heroArt.x = Math.ceil(-heroArt.width/2);
-		heroArt.y = Math.ceil(-heroArt.height/2);
-		
-		
-		starling.core.Starling.juggler
+		heroArt.y = Math.ceil(-heroArt.height/2);		
+		starling.core.Starling.juggler.add(heroArt);
 		this.addChild(heroArt);	
 		}
 	}

@@ -28,7 +28,7 @@ package
 		private static var gameTextureAtlas:TextureAtlas;
 		
 		[Embed(source="../media/graphics/mySpritesheet.png")]
-		public static const atlasTextureGame:Class;
+		public static const AtlasTextureGame:Class;
 		
 		[Embed(source="../media/graphics/mySpritesheet.xml", mimeType="application/octet-stream")]
 		public static const AtlasXmlGame:Class;
@@ -47,10 +47,6 @@ package
 		
 		
 		public static function getTexture(name:String):Texture
-		
-		
-		
-		
 		
 		{
 			
