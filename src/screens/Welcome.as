@@ -58,11 +58,11 @@ package screens
 			aboutBtn.y = 380
 			this.addChild(aboutBtn);
 		
-	this.addEventListener(Event.TRIGGERED, onMainMEnuClick);
+	this.addEventListener(Event.TRIGGERED, onMainMenuClick);
 	
 	}		
 	
-	private function onMainMEnuClick(event:Event):void
+	private function onMainMenuClick(event:Event):void
 	{
 	
 	var buttonClicked:Button = event.target as Button;
@@ -73,6 +73,14 @@ package screens
 	}
 	
 	}
+	public function disposeTemporarily():void
+	{
+	this.visible = false;
+		
+	if (this.hasEventListener(Event.ENTER_FRAME)) this.removeEventListener(Event.ENTER_FRAME, HeroAnimation);	
+	}
+	
+	
 	public function initialize():void
 	{
 		this.visible = true;

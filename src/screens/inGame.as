@@ -31,9 +31,14 @@ package screens
 		}
 	public function disposeTemporarily():void
 	{
-		this.visible = false;
-		
-				
+		this.visible = false;			
 		}
+	public function initialize():void
+	{
+		this.visible = true	
+	
+	}
+	
+	
 	}
 }
