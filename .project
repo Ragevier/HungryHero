@@ -14,11 +14,4 @@
 	<natures>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>[source path] greensock-as3</name>
-			<type>2</type>
-			<location>C:/Users/JanneV/Desktop/Uusi kansio/greensock-as3/greensock-as3</location>
-		</link>
-	</linkedResources>
 </projectDescription>

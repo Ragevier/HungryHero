@@ -47,8 +47,18 @@ package objects
 		
 		private function onEnterFrame(event:Event):void
 		{
-			bgLayer1.x -= Math.ceil(_speed*bg 
+		
+			bgLayer1.x -= Math.ceil(_speed * bgLayer1.parallax);
+			if(bgLayer1.x < -stage.stageWidth) bgLayer1.x = 0;
 			
+			bgLayer2.x -= Math.ceil(_speed * bgLayer2.parallax);
+			if(bgLayer2.x < -stage.stageWidth) bgLayer2.x = 0;
+			
+			bgLayer3.x -= Math.ceil(_speed * bgLayer3.parallax);
+			if(bgLayer3.x < -stage.stageWidth) bgLayer3.x = 0;
+			
+			bgLayer4.x -= Math.ceil(_speed * bgLayer4.parallax);
+			if(bgLayer4.x < -stage.stageWidth) bgLayer4.x = 0;
 		}
 		public function get speed():Number
 	{

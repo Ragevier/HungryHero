@@ -28,6 +28,7 @@ package screens
 		private function drawGame():void
 		{
 			bg = new GameBackground();
+			bg.speed = 50;
 			this.addChild(bg)
 			
 			hero = new Hero();
