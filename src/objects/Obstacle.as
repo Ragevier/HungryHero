@@ -16,7 +16,7 @@ package objects
 		private var _alreadyHit:Boolean;
 		private var _position:String;
 		private var obstacleImage:Image;
-		private var obstacleCrashImage;
+		private var obstacleCrashImage:Image;
 		private var obstacleAnimation:MovieClip;
 		private var watchOutAnimation:MovieClip;
 		
@@ -137,7 +137,7 @@ package objects
 			{
 				if(_type == 4)
 				{
-					obstacleAnimation = new MovieClip(Assets.getAtlas().getTextures("obstacle" + _type + "_0"), 10)
+				obstacleAnimation = new MovieClip(Assets.getAtlas().getTextures("obstacle" + _type + "_0"), 10)
 				Starling.juggler.add(obstacleAnimation);
 				obstacleAnimation.x = 0;
 				obstacleAnimation.y = 0;
@@ -151,5 +151,6 @@ package objects
 				obstacleImage.y = 0;
 				this.addChild(obstacleImage);
 			}
+		}	
 	}
 }

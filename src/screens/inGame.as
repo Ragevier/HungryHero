@@ -11,6 +11,10 @@ package screens
 	import starling.display.Button;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	
+	import starling.utils.deg2rad;
 	
 	public class inGame extends Sprite
 	{
@@ -25,7 +29,7 @@ package screens
 		
 		private var gameState:String;
 		private var playerSpeed:Number;
-		private var hitObsticle:Number = 0;
+		private var hitObstacle:Number = 0;
 		private const MIN_SPEED:Number = 650;
 		
 		private var scoreDistance:int;
@@ -33,6 +37,10 @@ package screens
 		
 		private var gameArea:Rectangle;
 		private var obstaclesToAnimate:Vector.<Obstacle>;
+		
+		private var touch:Touch;
+		private var touchX:Number;
+		private var touchY:Number;
 		
 		public function inGame()
 		{
@@ -82,7 +90,7 @@ package screens
 	
 	gameState = "idle";
 	playerSpeed = 0;
-	hitObsticle = 0; 
+	hitObstacle = 0; 
 	bg.speed = 0;
 	scoreDistance = 0;
 	obstacleGapCount = 0;
@@ -100,9 +108,17 @@ package screens
 	}
 	private function launchHero():void
 	{
-		
+		this.addEventListener(TouchEvent.TOUCH, onTouch)
 		this.addEventListener(Event.ENTER_FRAME, onGameTick);
 		
+	}
+	
+	private function onTouch(event:TouchEvent):void
+	{
+		touch = event.getTouch(stage);
+		
+		touchX = touch.globalX;
+		touchY = touch.globalY;
 	}
 	
 	private function onGameTick(event:Event):void
@@ -117,9 +133,7 @@ package screens
 				hero.y = stage.stageHeight * 0.5; 
 				
 				playerSpeed +=(MIN_SPEED - playerSpeed) * 0.05;
-				bg.speed = playerSpeed * elapsed;
-				
-				
+				bg.speed = playerSpeed * elapsed;		
 			
 			}
 			else
@@ -127,9 +141,24 @@ package screens
 				gameState = "flying";
 			
 			}
-			break;
-			
+			break;		
 			case "flying":
+				
+				if(hitObstacle <= 0)
+				{
+					hero.y -= (hero.y - touchY) * 0.1;
+				
+					if(hero.y >gameArea.bottom - hero.height * 0.5)
+					{
+						hero.y = gameArea.bottom - hero.height * 0.5;
+					}
+					if(hero.y < gameArea.top + hero.height * 0.5)
+					{
+						hero.y = gameArea.top + hero.height * 0.5;
+					}
+				}
+				
+				
 				playerSpeed -= (playerSpeed -MIN_SPEED) * 0.01;
 				bg.speed = playerSpeed*elapsed;
 				
@@ -165,7 +194,7 @@ package screens
 				}
 			obstacleToTrack.x -=(obstacleToTrack.speed) * elapsed;
 		}
-			if (obstacleToTrack.x - obstacleToTrack.width || gameState == "over")
+			if (obstacleToTrack.x < obstacleToTrack.width || gameState == "over")
 			{
 				obstaclesToAnimate.splice(i, 1);
 				this.removeChild(obstacleToTrack);
@@ -208,7 +237,7 @@ package screens
 	}
 	else
 	{
-		obstacle.y = int(Math.random() * (gameArea.bottom - obstacle.height - gameArea.top))
+		obstacle.y = int(Math.random() * (gameArea.bottom - obstacle.height - gameArea.top)) + gameArea.top;
 		obstacle.position = "middle";
 		}
 	obstaclesToAnimate.push(obstacle);
