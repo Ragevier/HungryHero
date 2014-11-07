@@ -32,6 +32,7 @@ package screens
 		private var obstacleGapCount:int;
 		
 		private var gameArea:Rectangle;
+		private var obstaclesToAnimate:Vector.<Obstacle>;
 		
 		public function inGame()
 		{
@@ -86,6 +87,8 @@ package screens
 	scoreDistance = 0;
 	obstacleGapCount = 0;
 	
+	obstaclesToAnimate = new Vector.<Obstacle>();
+	
 	startButton.addEventListener(Event.TRIGGERED, onStartButtonClick);
 	}
 	
@@ -134,11 +137,39 @@ package screens
 				trace(scoreDistance);
 			
 				initObstacle();
+				animateObstacles();
+				
 				
 				break;
 			case "over":
 				break;			
 			
+		}
+	}
+	
+	private function animateObstacles():void
+	{
+		var obstacleToTrack:Obstacle;
+		for (var i:uint = 0;i<obstaclesToAnimate.length;i++)
+		{
+			obstacleToTrack = obstaclesToAnimate[i];
+			if	(obstacleToTrack.distance > 0)
+			{
+				obstacleToTrack.distance -= playerSpeed * elapsed;
+			}
+			else
+			{
+				if(obstacleToTrack.watchOut)
+				{
+					obstacleToTrack.watchOut = false;
+				}
+			obstacleToTrack.x -=(obstacleToTrack.speed) * elapsed;
+		}
+			if (obstacleToTrack.x - obstacleToTrack.width || gameState == "over")
+			{
+				obstaclesToAnimate.splice(i, 1);
+				this.removeChild(obstacleToTrack);
+			}
 		}
 	}
 	
@@ -151,7 +182,7 @@ package screens
 		else if(obstacleGapCount != 0)
 		{
 			obstacleGapCount = 0;
-			createObstacle(Math.ceil(Math.random() * 4),(Math.random() * 1000 + 1000);
+			createObstacle(Math.ceil(Math.random() * 4), Math.random() * 1000 + 1000);
 		}
 	}
 	
@@ -163,10 +194,24 @@ package screens
 	
 	if (type <=3)
 	{
-		if Math.random
+		if (Math.random() > 0.5)
+		{
+			
+			obstacle.y = gameArea.top;
+			obstacle.position = "top";
+		}
+		else
+		{
+			obstacle.y = gameArea.bottom - obstacle.height;
+			obstacle.position = "bottom";	
+		}	
 	}
-	
-	
+	else
+	{
+		obstacle.y = int(Math.random() * (gameArea.bottom - obstacle.height - gameArea.top))
+		obstacle.position = "middle";
+		}
+	obstaclesToAnimate.push(obstacle);
 	}
 	
 	private function checkElapsed(event:Event):void

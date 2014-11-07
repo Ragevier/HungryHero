@@ -21,7 +21,7 @@ package objects
 		private var watchOutAnimation:MovieClip;
 		
 		
-		public function Obstacle[_type:int, _distance:int, _watchOut:Boolean = true, _speed:int = 0)
+		public function Obstacle(_type:int, _distance:int, _watchOut:Boolean = true, _speed:int = 0)
 		{
 			super();
 			this._type = _type;
@@ -31,14 +31,9 @@ package objects
 		
 			_alreadyHit = false;
 		
-		this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage;
+		this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
-		private 
-		public 
-		public 
-		public 
-		public 
 		public function get speed():int
 		{
 			return _speed;
@@ -49,7 +44,7 @@ package objects
 			_speed = value;
 		}
 
-function get distance():int
+		public function get distance():int
 		{
 			return _distance;
 		}
@@ -59,7 +54,7 @@ function get distance():int
 			_distance = value;
 		}
 
-function get position():String
+		public function get position():String
 		{
 			return _position;
 		}
@@ -69,7 +64,7 @@ function get position():String
 			_position = value;
 		}
 
-function get alreadyHit():Boolean
+		public function get alreadyHit():Boolean
 		{
 			return _alreadyHit;
 		}
@@ -85,7 +80,7 @@ function get alreadyHit():Boolean
 		}
 	}
 
-	function get watchOut():Boolean
+		public 	function get watchOut():Boolean
 		{
 			return _watchOut;
 		}
@@ -101,7 +96,7 @@ function get alreadyHit():Boolean
 		}
 	}
 
-function onAddedToStage(event:Event):void
+ private function onAddedToStage(event:Event):void
 		{
 		
 		this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
@@ -147,8 +142,7 @@ function onAddedToStage(event:Event):void
 				obstacleAnimation.x = 0;
 				obstacleAnimation.y = 0;
 				this.addChild(obstacleAnimation);
-				
-				
+							
 				}
 				else
 				{
